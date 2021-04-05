@@ -54,7 +54,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="/place/view/{{$data->id}}" class="btn btn-primary btn-circle">
+                            <a href="{{route('place',$data->id)}}" class="btn btn-primary btn-circle">
                                 <i class="fas fa-eye"></i>
                             </a>
                             <a href="#" class="btn btn-success btn-circle">

@@ -87,7 +87,7 @@
                 <div id="collapseCategories" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/categories">Manage Categories</a>
+                        <a class="collapse-item" href="{{route('categories')}}">Manage Categories</a>
                     </div>
                 </div>
             </li>
@@ -103,7 +103,7 @@
                 <div id="collapseAdverts" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/adverts">Manage Adverts</a>
+                        <a class="collapse-item" href="{{route('adverts')}}">Manage Adverts</a>
                     </div>
                 </div>
             </li>
@@ -118,7 +118,7 @@
                 <div id="collapseSliders" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/sliders">Manage Sliders</a>
+                        <a class="collapse-item" href="{{route('sliders')}}">Manage Sliders</a>
                     </div>
                 </div>
             </li>
@@ -134,7 +134,7 @@
                 <div id="collapseReviews" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/reviews">Manage Reviews</a>
+                        <a class="collapse-item" href="#">Manage Reviews</a>
                     </div>
                 </div>
             </li>
