@@ -25,9 +25,9 @@ Auth::routes();
 
 Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
     
-    // Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
     Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('logout');
-    // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
     Route::get('/places', [App\Http\Controllers\PlaceController::class, 'adminIndex'])->name('places');
     Route::get('/place/view/{id}', [App\Http\Controllers\PlaceController::class, 'viewPlace'])->name('place');
     Route::post('/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('addPlace');
@@ -44,7 +44,7 @@ Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
 });
 Route::middleware(['auth', 'can:accessUser'])->group(function(){
     
-    Route::get('/', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('user-dashboard');
+    // Route::get('/', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('user-dashboard');
     Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('user-logout');
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('user-dashboard');
     Route::get('/user/places', [App\Http\Controllers\PlaceController::class, 'userIndex'])->name('user-places');
