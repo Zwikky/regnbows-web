@@ -153,6 +153,91 @@
                 </div>
             </li>
             @endif
+            <!-- Users Menu -->
+
+            @if(Auth::user()->user_rights === 'user')
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('user-dashboard')}}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                User Tools
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlaces"
+                    aria-expanded="true" aria-controls="collapsePlaces">
+                    <i class="fas fa-fw fa-briefcase"></i>
+                    <span>Businesses</span>
+                </a>
+                <div id="collapsePlaces" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('user-places')}}">Manage Businesses</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Adverts Menu -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdverts"
+                    aria-expanded="true" aria-controls="collapseAdverts">
+                    <i class="fas fa-fw fa-bullhorn"></i>
+                    <span>Adverts</span>
+                </a>
+                <div id="collapseAdverts" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('user-adverts')}}">Manage Adverts</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Sliders Menu -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSliders"
+                    aria-expanded="true" aria-controls="collapseSliders">
+                    <i class="fas fa-fw fa-desktop"></i>
+                    <span>Sliders</span>
+                </a>
+                <div id="collapseSliders" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('user-sliders')}}">Manage Sliders</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReviews"
+                    aria-expanded="true" aria-controls="collapseReviews">
+                    <i class="fas fa-fw fa-flag"></i>
+                    <span>Reviews</span>
+                </a>
+                <div id="collapseReviews" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Manage Reviews</a>
+                    </div>
+                </div>
+            </li>
+
+            @endif
+
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -264,18 +349,23 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
+
+                            <!-- Dropdown - Alerts -->
+
+                            @if(Request::is('dashboard'))
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">1</span>
+                                <span class="badge badge-danger badge-counter">{{$get_adverts->count()}}</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
+                                @foreach($get_adverts as $data)
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
@@ -283,12 +373,15 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="small text-gray-500">March 22, {{date('Y')}}</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <div class="small text-gray-500">{{$data->created_at}}</div>
+                                        <span class="font-weight-bold">New Advert: {{$data->title}}</span>
                                     </div>
                                 </a>
+                                @endforeach
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
+                            @endif
+
                         </li>
 
                         <!-- Nav Item - Messages -->

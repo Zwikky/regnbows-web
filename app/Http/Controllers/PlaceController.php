@@ -21,6 +21,20 @@ class PlaceController extends Controller
         ]);
     }
 
+    public function userIndex(){
+
+        $user = Auth::user()->id;
+
+        $category = Category::all();
+        $places  = Place::where('owner', '=', $user)->get();
+
+        return view('places', [
+            'categories' => $category,
+            'places' => $places
+        ]);
+        
+    }
+
     
     public function addPlace(Request $request){
         $place = new Place();
@@ -62,10 +76,30 @@ class PlaceController extends Controller
 
     }
 
+    public function approvePlace($id){
+        $place  = Place::find($id);
+
+        $place->status = "1";
+        $place->save();
+
+        return back()
+            ->with('success','Business Approved Successfully.');
+        
+    }
+
     public function viewPlace($id){
         $place = Place::findOrFail($id);
         
         return view('place', [
+            'place' => $place
+        ]);
+    }
+
+    public function userViewPlace($id){
+        $user = Auth::user()->id;
+        $place = Place::where('id', '=', $id & 'owner', '=', $user);
+        
+        return view('user-place', [
             'place' => $place
         ]);
     }

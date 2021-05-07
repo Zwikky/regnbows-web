@@ -4,49 +4,51 @@
 <!-- Page Heading -->
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Sliders</h1>
-    <button data-toggle="modal" data-target="#newSlider"
+    <h1 class="h3 mb-0 text-gray-800">Adverts</h1>
+    <button data-toggle="modal" data-target="#newPlace"
         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-plus fa-sm text-white-50"></i> Add Slider</button>
+            class="fas fa-plus fa-sm text-white-50"></i> Add Advert</button>
 </div>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Manage Sliders</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Manage Adverts</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Business</th>
-                        <th>Type</th>
+                        <th>Company</th>
+                        <th>Advert</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Business</th>
-                        <th>Type</th>
+                        <th>Company</th>
+                        <th>Advert</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach($sliders as $data)
+                    @foreach($adverts as $data)
                     <tr>
+
+                        <td>{{$data->company}}</td>
                         <td>
                             <img class="img-profile rounded-circle" width="25" height="25"
                                 src="{{asset($data->imageUrl)}}">
                         </td>
-                        <td>{{$data->title}}</td>
-                        <td>{{$data->company}}</td>
+                        <td>{{$data->start_date}}</td>
+                        <td>{{$data->end_date}}</td>
                         <td>
                             @if($data->status == 1)
                             <span class="badge badge-success">Active</span>
@@ -56,12 +58,12 @@
                             @endif
                         </td>
                         <td>
-                            <a href="/slider/view/{{$data->id}}" class="btn btn-primary btn-circle">
+                            <a href="/adverts/view/{{$data->id}}" class="btn btn-primary btn-circle">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <!-- <a href="#" class="btn btn-success btn-circle">
+                            <a href="#" class="btn btn-success btn-circle">
                                 <i class="fas fa-check"></i>
-                            </a> -->
+                            </a>
                             <a href="#" class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -76,6 +78,7 @@
 
 
 @endsection
+
 @section('modals')
-@include('modals.admin.slider')
+@include('modals.admin.user')
 @endsection

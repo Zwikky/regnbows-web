@@ -5,7 +5,7 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Adverts</h1>
-    <button data-toggle="modal" data-target="#newPlace"
+    <button data-toggle="modal" data-target="#newAdvert"
         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-plus fa-sm text-white-50"></i> Add Advert</button>
 </div>
@@ -42,10 +42,9 @@
                     @foreach($adverts as $data)
                     <tr>
 
-                        <td>{{$data->company}}</td>
+                        <td>{{$data->place}}</td>
                         <td>
-                            <img class="img-profile rounded-circle" width="25" height="25"
-                                src="{{asset($data->imageUrl)}}">
+                            <img class="img-profile" width="150" height="50" src="{{asset($data->imageUrl)}}">
                         </td>
                         <td>{{$data->start_date}}</td>
                         <td>{{$data->end_date}}</td>
@@ -61,9 +60,11 @@
                             <a href="/adverts/view/{{$data->id}}" class="btn btn-primary btn-circle">
                                 <i class="fas fa-eye"></i>
                             </a>
+                            @if(Auth::user()->rights === 'admin')
                             <a href="#" class="btn btn-success btn-circle">
                                 <i class="fas fa-check"></i>
                             </a>
+                            @endif
                             <a href="#" class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -80,5 +81,5 @@
 @endsection
 
 @section('modals')
-@include('modals.admin.user')
+@include('modals.admin.advert')
 @endsection

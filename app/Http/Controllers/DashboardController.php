@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advert;
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Place;
 use App\Models\User;
@@ -11,17 +13,36 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function adminIndex(){
+
+        $get_new_adverts = Advert::where("created_at", "<", Carbon::now()->subDays(2))->get();
+
+
         $category = Category::all();
         $places  = Place::all();
 
         return view('dashboard', [
             'categories' => $category,
-            'places' => $places
+            'places' => $places,
+            'get_adverts' => $get_new_adverts
         ]);
     }
 
     public function userIndex(){
-        return view('dashboard');
+        $user = Auth::user()->id;
+
+        $get_new_adverts = Advert::where("created_at", ">", Carbon::now()->subDays(2))->get();
+        // $get_new_adverts = Advert::where("owner", "=", $user)->get();
+
+
+
+        $category = Category::all();
+        $places  = Place::where('owner', '=', $user)->get();
+
+        return view('dashboard', [
+            'categories' => $category,
+            'places' => $places,
+            'get_adverts' => $get_new_adverts
+        ]);
     }
 
 
