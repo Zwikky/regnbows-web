@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewSliderEmail;
 use App\Models\Place;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Swift_TransportException;
 
 class SliderController extends Controller
 {
@@ -18,15 +22,20 @@ class SliderController extends Controller
     public function list(){
         $sliders = Slider::all();
 
+        $companies = Place::all();
+
         return view('sliders', [
-            'sliders' => $sliders
+            'sliders' => $sliders,
+            'companies' => $companies
         ]);
     }
 
     public function userSlider(){
         $user = Auth::user()->id;
 
-        $sliders = Slider::where('owner', '=', $user)->get();
+        
+        $sliders = Slider::join('places', 'places.id', '=', 'sliders.company')->where('sliders.owner', '=', $user)->get();
+
         $companies = Place::where('owner', '=', $user)->get();
 
         return view('sliders', [
@@ -53,10 +62,29 @@ class SliderController extends Controller
             $slider->imageUrl = '/storage/' . $sliderPath;
             $slider->status = 1;
 
-            $slider->save();
+            $data = [
+                'slider' => $request->title,
+                'owner' =>  Auth::user()->name
+            ];
 
-            return back()
-                ->with('success', 'Slider Created Succefully');
+                    
+            try{
+                Mail::to('zwikky@gmail.com')->send(new NewSliderEmail($data));
+
+
+                
+            $slider->save();
+                return back()
+                    ->with('success', 'Slider Created Succefully, Waiting for Approval');
+            
+            } catch(Swift_TransportException $e) {
+                // echo $e->getMessage();
+                return back()
+                ->with('fail', 'Error Creating Slider, Try Again')
+                ->withInput();
+            }
+
+
         } else {
             return back()
                 ->with('fail', 'Error Creating Slider, Try Again')

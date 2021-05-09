@@ -30,7 +30,7 @@ Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
     Route::get('/places', [App\Http\Controllers\PlaceController::class, 'adminIndex'])->name('places');
     Route::get('/place/view/{id}', [App\Http\Controllers\PlaceController::class, 'viewPlace'])->name('place');
-    Route::post('/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('addPlace');
+    // Route::post('/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('addPlace');
     Route::get('/users', [App\Http\Controllers\DashboardController::class, 'listUsers'])->name('users');
     Route::get('/sliders', [App\Http\Controllers\SliderController::class, 'list'])->name('sliders');
     Route::get('/adverts', [App\Http\Controllers\AdvertController::class, 'list'])->name('adverts');
@@ -50,6 +50,8 @@ Route::middleware(['auth', 'can:accessUser'])->group(function(){
     Route::get('/user/places', [App\Http\Controllers\PlaceController::class, 'userIndex'])->name('user-places');
     Route::get('/user/place/view/{id}', [App\Http\Controllers\PlaceController::class, 'viewPlace'])->name('user-place');
     Route::post('/user/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('user-addPlace');
+    Route::post('/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('addPlace');
+
     Route::get('/user/sliders', [App\Http\Controllers\SliderController::class, 'userSlider'])->name('user-sliders');
     Route::post('/user/addSlider', [App\Http\Controllers\SliderController::class, 'userAddSlider'])->name('addSlider');
     Route::get('/user/adverts', [App\Http\Controllers\AdvertController::class, 'userAdverts'])->name('user-adverts');

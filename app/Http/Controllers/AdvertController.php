@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewAdvertEmail;
 use App\Models\Advert;
 use App\Models\Place;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Swift_TransportException;
 
 class AdvertController extends Controller
 {
@@ -17,8 +20,11 @@ class AdvertController extends Controller
     public function list(){
         $adverts = Advert::all();
 
+        $companies = Place::all();
+
         return view('adverts', [
-            'adverts' => $adverts
+            'adverts' => $adverts,
+            'companies' => $companies
         ]);
     }
 
@@ -40,14 +46,35 @@ class AdvertController extends Controller
         $advert->place = $request->place;
         $advert->imageUrl = '/storage/' . $filePath;
 
-        $advert->save();
+        
+        
 
-        // return back()
-        //     ->with('success', 'Advert Created Succefully');
-        return redirect('/advert/mail');
+        
+        $data = [
+            'advert' => $request->title,
+            'owner' =>  Auth::user()->name
+        ];
+
+                
+        try{
+            Mail::to('zwikky@gmail.com')->send(new NewAdvertEmail($data));
+
+
+            $advert->save();
+            return back()
+                ->with('success', 'Advert Created Succefully, Waiting for Approval');
+        
+        } catch(Swift_TransportException $e) {
+            // echo $e->getMessage();
+            return back()
+            ->with('fail', 'Error Creating Advert, Try Again')
+            ->withInput();
+        }
+
+        
         } else {
             return back()
-            ->with('fail', 'Error Uploading File, Try Again')
+            ->with('fail', 'Error Uploading Advert, Try Again')
             ->withInput();
         }
 
@@ -57,7 +84,7 @@ class AdvertController extends Controller
     public function userAdverts(){
         $user = Auth::user()->id;
 
-        $adverts = Advert::where('owner', '=', $user)->get();
+        $adverts = Advert::join('places', 'places.id', '=', 'adverts.place')->where('adverts.owner', '=', $user)->get();
         $companies = Place::where('owner', '=', $user)->get();
 
         return view('adverts', [

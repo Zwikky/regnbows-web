@@ -23,7 +23,6 @@
                         <th>Image</th>
                         <th>Title</th>
                         <th>Business</th>
-                        <th>Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -33,7 +32,6 @@
                         <th>Image</th>
                         <th>Title</th>
                         <th>Business</th>
-                        <th>Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -42,11 +40,10 @@
                     @foreach($sliders as $data)
                     <tr>
                         <td>
-                            <img class="img-profile rounded-circle" width="25" height="25"
-                                src="{{asset($data->imageUrl)}}">
+                            <img class="img" width="225" height="125" src="{{asset($data->imageUrl)}}">
                         </td>
                         <td>{{$data->title}}</td>
-                        <td>{{$data->company}}</td>
+                        <td>{{$data->name}}</td>
                         <td>
                             @if($data->status == 1)
                             <span class="badge badge-success">Active</span>
@@ -59,9 +56,9 @@
                             <a href="/slider/view/{{$data->id}}" class="btn btn-primary btn-circle">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <!-- <a href="#" class="btn btn-success btn-circle">
+                            <a href="#" class="btn btn-success btn-circle">
                                 <i class="fas fa-check"></i>
-                            </a> -->
+                            </a>
                             <a href="#" class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>

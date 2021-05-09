@@ -42,7 +42,7 @@
                     @foreach($adverts as $data)
                     <tr>
 
-                        <td>{{$data->place}}</td>
+                        <td>{{$data->name}}</td>
                         <td>
                             <img class="img-profile" width="150" height="50" src="{{asset($data->imageUrl)}}">
                         </td>
@@ -60,11 +60,9 @@
                             <a href="/adverts/view/{{$data->id}}" class="btn btn-primary btn-circle">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            @if(Auth::user()->rights === 'admin')
                             <a href="#" class="btn btn-success btn-circle">
                                 <i class="fas fa-check"></i>
                             </a>
-                            @endif
                             <a href="#" class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>

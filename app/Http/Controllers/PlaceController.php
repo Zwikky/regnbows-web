@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewBusinessEmail;
 use App\Models\Category;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Swift_TransportException;
 
 class PlaceController extends Controller
 {
@@ -70,8 +73,23 @@ class PlaceController extends Controller
 
             $place->save();
 
-            return back()
-                ->with('success', 'Business Created Succefully');
+            $data = [
+                'business' => $request->name,
+                'owner' =>  Auth::user()->name
+            ];
+
+                    
+            try{
+                Mail::to('zwikky@gmail.com')->send(new NewBusinessEmail($data));
+
+                return back()
+                    ->with('success', 'Business Created Succefully');
+            
+            } catch(Swift_TransportException $e) {
+                echo $e->getMessage();
+            }
+
+            
         }
 
     }
