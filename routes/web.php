@@ -35,6 +35,7 @@ Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
     Route::get('/sliders', [App\Http\Controllers\SliderController::class, 'list'])->name('sliders');
     Route::get('/adverts', [App\Http\Controllers\AdvertController::class, 'list'])->name('adverts');
 
+    Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('logout');
 
     // Route::get('/', function () {
     //     return view('welcome');
