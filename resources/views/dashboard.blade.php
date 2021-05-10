@@ -1,6 +1,6 @@
-@if(Auth::user()->rights === 'admin')
+<!-- @if(Auth::user()->rights === 'admin') -->
 @include('admin-dashboard')
-@endif
+<!-- @endif
 @if(Auth::user()->rights === 'user')
 @include('user-dashboard')
-@endif
+@endif -->
