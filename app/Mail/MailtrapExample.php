@@ -29,6 +29,7 @@ class MailtrapExample extends Mailable
     public function build()
     {
         return $this->subject('Regnbow Market: New Advert')
+        ->to(env('MAIL_TO_ADMIN'))
         ->cc('zwikky@gmail.com', 'Zwakele Mkhatshwa')
         ->bcc('zwakele.mkhatshwa@fnb.co.sz', 'Zwakele Mkhatshwa')
             ->markdown('mails.exmpl')

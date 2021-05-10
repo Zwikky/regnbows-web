@@ -29,6 +29,7 @@ class NewAdvertEmail extends Mailable
     public function build()
     {
         return $this->subject('Regnbow Market: New Advert')
+        ->to(env('MAIL_TO_ADMIN'))
         ->cc('zwikky@gmail.com', 'Zwakele Mkhatshwa')
             ->markdown('email.user.new_advert')
             ->with([

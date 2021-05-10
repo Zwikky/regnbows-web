@@ -30,6 +30,7 @@ class NewSliderEmail extends Mailable
     {
 
         return $this->subject('Regnbow Market: New Slider')
+        ->to(env('MAIL_TO_ADMIN'))
         ->cc('zwikky@gmail.com', 'Zwakele Mkhatshwa')
             ->markdown('email.user.new_slider')
             ->with([

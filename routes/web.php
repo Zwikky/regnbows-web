@@ -26,7 +26,7 @@ Auth::routes();
 Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
     
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
-    Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('logout');
+    
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
     Route::get('/places', [App\Http\Controllers\PlaceController::class, 'adminIndex'])->name('places');
     Route::get('/place/view/{id}', [App\Http\Controllers\PlaceController::class, 'viewPlace'])->name('place');
@@ -45,8 +45,8 @@ Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
 Route::middleware(['auth', 'can:accessUser'])->group(function(){
     
     // Route::get('/', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('user-dashboard');
-    Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('user-logout');
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('user-dashboard');
+    // Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('user-logout');
+    
     Route::get('/user/places', [App\Http\Controllers\PlaceController::class, 'userIndex'])->name('user-places');
     Route::get('/user/place/view/{id}', [App\Http\Controllers\PlaceController::class, 'viewPlace'])->name('user-place');
     Route::post('/user/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('user-addPlace');
@@ -56,6 +56,9 @@ Route::middleware(['auth', 'can:accessUser'])->group(function(){
     Route::post('/user/addSlider', [App\Http\Controllers\SliderController::class, 'userAddSlider'])->name('addSlider');
     Route::get('/user/adverts', [App\Http\Controllers\AdvertController::class, 'userAdverts'])->name('user-adverts');
     Route::post('/user/create/adver', [App\Http\Controllers\AdvertController::class, 'createAdvert'])->name('createAdvert');
+
+    Route::get('/user-dashboard', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('user-dashboard');
+    Route::get('/user/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('user-logout');
     
 });
 
@@ -63,17 +66,8 @@ Route::middleware(['auth', 'can:accessUser'])->group(function(){
 
 Route::get('/api/places/{id}', [App\Http\Controllers\PlaceController::class, 'placesByCategory'])->name('placesByCategory');
 
-Route::get('/advert/mail', function(){
-
-    try{
-        Mail::to('zwikky@gmail.com')->send(new MailtrapExample());
-
-    return back()
-        ->with('success', 'New Advert Uploaded Successfully');
-    // return view('mails.exmpl');
-    } catch(Swift_TransportException $e) {
-        echo $e->getMessage();
-    }
-
-    
-});
+// Route::middleware(['auth', 'can:accessUser'])->group(function(){
+//     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('dashboard');
+//     Route::get('/', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('dashboard');
+//     Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('logout');
+// });
