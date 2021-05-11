@@ -20,9 +20,11 @@ class SliderController extends Controller
     }
 
     public function list(){
-        $sliders = Slider::all();
+        //  = Slider::all();
 
         $companies = Place::all();
+        $sliders = Slider::join('places', 'places.id', '=', 'sliders.company')
+                                ->get();
 
         return view('sliders', [
             'sliders' => $sliders,

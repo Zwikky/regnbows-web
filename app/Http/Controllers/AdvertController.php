@@ -19,6 +19,9 @@ class AdvertController extends Controller
     }
     public function list(){
         $adverts = Advert::all();
+        $adverts = Advert::join('places', 'places.id', '=', 'adverts.place')
+                                ->get();
+
 
         $companies = Place::all();
 

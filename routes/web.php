@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::middleware(['auth', 'can:accessAdmin'])->group(function(){
     
-    Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
+    // Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
     
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
     Route::get('/places', [App\Http\Controllers\PlaceController::class, 'adminIndex'])->name('places');
@@ -51,7 +51,7 @@ Route::middleware(['auth', 'can:accessUser'])->group(function(){
     Route::get('/user/places', [App\Http\Controllers\PlaceController::class, 'userIndex'])->name('user-places');
     Route::get('/user/place/view/{id}', [App\Http\Controllers\PlaceController::class, 'viewPlace'])->name('user-place');
     Route::post('/user/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('user-addPlace');
-    Route::post('/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('addPlace');
+    Route::post('/user/addPlace', [App\Http\Controllers\PlaceController::class, 'addPlace'])->name('addPlace');
 
     Route::get('/user/sliders', [App\Http\Controllers\SliderController::class, 'userSlider'])->name('user-sliders');
     Route::post('/user/addSlider', [App\Http\Controllers\SliderController::class, 'userAddSlider'])->name('addSlider');
@@ -67,8 +67,12 @@ Route::middleware(['auth', 'can:accessUser'])->group(function(){
 
 Route::get('/api/places/{id}', [App\Http\Controllers\PlaceController::class, 'placesByCategory'])->name('placesByCategory');
 
-// Route::middleware(['auth', 'can:accessUser'])->group(function(){
-//     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('dashboard');
-//     Route::get('/', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('dashboard');
-//     Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('logout');
+// Route::middleware(['auth','can:accessAdmin', 'can:accessUser'])->group(function(){
+//     // Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'userIndex'])->name('dashboard');
+//     Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('/');
+//     // Route::get('/logout', [App\Http\Controllers\DashboardController::class, 'logout'])->name('logout');
+// });
+
+// Route::middleware(['auth', 'can:accessUser', 'can:accessAdmin'])->group(function(){
+//     Route::get('/', [App\Http\Controllers\DashboardController::class, 'adminIndex'])->name('dashboard');
 // });

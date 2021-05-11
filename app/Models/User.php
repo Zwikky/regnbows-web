@@ -51,4 +51,8 @@ class User extends Authenticatable
       
         return in_array($this->user_rights, $user_rights); 
      }
+
+     public function getIsAdmin(){
+        //  return $this->users()->where('rights', 'admin')->exists();
+     }
 }

@@ -352,7 +352,7 @@
 
                             <!-- Dropdown - Alerts -->
 
-                            @if(Request::is('dashboard'))
+                            @if(Request::is('dashboard') || Request::is('/'))
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -434,10 +434,20 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
+                                @if(Auth::user()->user_rights === 'user')
+
+                                <a class="dropdown-item" href="{{route('user-logout')}}">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                                @endif
+                                @if(Auth::user()->user_rights === 'admin')
+
                                 <a class="dropdown-item" href="{{route('logout')}}">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
+                                @endif
                             </div>
                         </li>
 
