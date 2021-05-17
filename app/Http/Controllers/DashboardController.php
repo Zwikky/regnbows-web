@@ -22,6 +22,8 @@ class DashboardController extends Controller
         if (Auth::user()->user_rights == 'admin') {
                         
             $get_new_adverts = Advert::where("created_at", ">", Carbon::now()->subDays(10))->get();
+            $get_new_users = User::where("created_at", ">", Carbon::now()->subDays(10))->get();
+            $get_new_businesses = Place::where("created_at", ">", Carbon::now()->subDays(10))->get();
 
 
                     $category = Category::all();
@@ -32,7 +34,9 @@ class DashboardController extends Controller
                         
                         'categories' => $category,
                         'places' => $places,
-                        'get_adverts' => $get_new_adverts
+                        'get_adverts' => $get_new_adverts,
+                        'get_users' => $get_new_users,
+                        'get_businesses' => $get_new_businesses
                     ]);
 
 

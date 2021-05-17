@@ -46,10 +46,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <img src="{{asset($place->logoUrl)}}" alt="" class="col-sm-3" width="60" height="60">
-                <img src="{{asset($place->image1Url)}}" alt="" class="col-sm-3" width="60" height="60">
-                <img src="{{asset($place->image2Url)}}" alt="" class="col-sm-3" width="60" height="60">
-                <img src="{{asset($place->image3Url)}}" alt="" class="col-sm-3" width="60" height="60">
+                <label for="" class="col-sm-2 col-form-label"></label>
+
+                <div class="column">
+                    <img src="{{asset($place->logoUrl)}}" width="150" height="150">
+                    <img src="{{asset($place->image1Url)}}" width="150" height="150">
+                    <img src="{{asset($place->image2Url)}}" width="150" height="150">
+                    <img src="{{asset($place->image3Url)}}" width="150" height="150">
+                </div>
+
             </div>
             <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
@@ -61,6 +66,12 @@
                 <label for="inputPassword" class="col-sm-2 col-form-label">Website</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputPassword" value="{{$place->website}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="tin_nubmer" class="col-sm-2 col-form-label">TIN Number</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="{{$place->tin_number}}">
                 </div>
             </div>
             <div class="form-group row">

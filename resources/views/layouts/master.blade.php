@@ -357,7 +357,8 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">{{$get_adverts->count()}}</span>
+                                <span
+                                    class="badge badge-danger badge-counter">{{$get_adverts->count() + $get_users->count() + $get_businesses->count()}}</span>
                             </a>
 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -375,6 +376,32 @@
                                     <div>
                                         <div class="small text-gray-500">{{$data->created_at}}</div>
                                         <span class="font-weight-bold">New Advert: {{$data->title}}</span>
+                                    </div>
+                                </a>
+                                @endforeach
+                                @foreach($get_users as $data)
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-user text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">{{$data->created_at}}</div>
+                                        <span class="font-weight-bold">New User: {{$data->name}}</span>
+                                    </div>
+                                </a>
+                                @endforeach
+                                @foreach($get_businesses as $data)
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-dark">
+                                            <i class="fas fa-briefcase text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">{{$data->created_at}}</div>
+                                        <span class="font-weight-bold">New Business: {{$data->name}}</span>
                                     </div>
                                 </a>
                                 @endforeach

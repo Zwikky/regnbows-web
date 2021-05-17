@@ -37,6 +37,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="tin_number" class="col-sm-4 col-form-label">TIN Number:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="tin_number" placeholder="TIN Number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="contact" class="col-sm-4 col-form-label">Contact #:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="contact" placeholder="Contact Number">

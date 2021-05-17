@@ -9,7 +9,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="{{route('addPlace')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('user-add-place')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group row">
@@ -34,6 +34,12 @@
                         <label for="website" class="col-sm-4 col-form-label">Website:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="website" placeholder="Website Address">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tin_number" class="col-sm-4 col-form-label">TIN Number:</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="tin_number" placeholder="TIN Number">
                         </div>
                     </div>
                     <div class="form-group row">
