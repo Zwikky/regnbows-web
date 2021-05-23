@@ -55,16 +55,18 @@ class PlaceController extends Controller
             $image2FilePath = $request->file('image2')->storeAs('uploads/places/images', $image2FileName, 'public');
             $image3FilePath = $request->file('image3')->storeAs('uploads/places/images', $image3FileName, 'public');
 
+            $web = env('APP_URL');
+
 
             $place->name = $request->name;
             $place->address = $request->address;
             $place->details = $request->details;
             $place->category = $request->category;
             $place->owner = $owner;
-            $place->logoUrl = '/storage/' . $logoPath;
-            $place->image1Url = '/storage/' . $image1FilePath;
-            $place->image2Url = '/storage/' . $image2FilePath;
-            $place->image3Url = '/storage/' . $image3FilePath;
+            $place->logoUrl = $web.'/storage/' . $logoPath;
+            $place->image1Url = $web.'/storage/' . $image1FilePath;
+            $place->image2Url = $web.'/storage/' . $image2FilePath;
+            $place->image3Url = $web.'/storage/' . $image3FilePath;
             $place->email = $request->email;
             $place->website = $request->website;
             $place->tin_number = $request->tin_number;
@@ -111,16 +113,18 @@ class PlaceController extends Controller
             $image2FilePath = $request->file('image2')->storeAs('uploads/places/images', $image2FileName, 'public');
             $image3FilePath = $request->file('image3')->storeAs('uploads/places/images', $image3FileName, 'public');
 
+            $web = env('APP_URL');
+
 
             $place->name = $request->name;
             $place->address = $request->address;
             $place->details = $request->details;
             $place->category = $request->category;
             $place->owner = $owner;
-            $place->logoUrl = '/storage/' . $logoPath;
-            $place->image1Url = '/storage/' . $image1FilePath;
-            $place->image2Url = '/storage/' . $image2FilePath;
-            $place->image3Url = '/storage/' . $image3FilePath;
+            $place->logoUrl = $web.'/storage/' . $logoPath;
+            $place->image1Url = $web.'/storage/' . $image1FilePath;
+            $place->image2Url = $web.'/storage/' . $image2FilePath;
+            $place->image3Url = $web.'/storage/' . $image3FilePath;
             $place->email = $request->email;
             $place->website = $request->website;
             $place->tin_number = $request->tin_number;

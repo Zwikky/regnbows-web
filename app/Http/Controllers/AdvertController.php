@@ -35,6 +35,8 @@ class AdvertController extends Controller
 
         $advert = new Advert();
         $owner = Auth::user()->id;
+        $web = env('APP_URL');
+
 
         if($request->file()) {
             $fileName = time().'_'.$request->imageUrl->getClientOriginalName();
@@ -47,7 +49,7 @@ class AdvertController extends Controller
         $advert->status = "0";
         $advert->owner = $owner;
         $advert->place = $request->place;
-        $advert->imageUrl = '/storage/' . $filePath;
+        $advert->imageUrl = $web.'/storage/' . $filePath;
 
         
         

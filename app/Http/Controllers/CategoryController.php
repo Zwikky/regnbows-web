@@ -34,9 +34,9 @@ class CategoryController extends Controller
             $fileName = time().'_'.$request->imageUrl->getClientOriginalName();
             $filePath = $request->file('imageUrl')->storeAs('uploads/categories', $fileName, 'public');
 
-
+            $web = env('APP_URL');    
         $category->name = $request->name;
-        $category->imageUrl = '/storage/' . $filePath;;
+        $category->imageUrl = $web.'/storage/' . $filePath;;
         $category->bgColor = $request->bgColor;
         $category->order = $request->order;
 

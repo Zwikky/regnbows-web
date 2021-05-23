@@ -56,12 +56,14 @@ class SliderController extends Controller
             $sliderName = time().'_'.$request->imageUrl->getClientOriginalName();           
             $sliderPath = $request->file('imageUrl')->storeAs('uploads/places/sliders', $sliderName, 'public');
 
+            $web = env('APP_URL');
+
 
             $slider->title = $request->title;
             $slider->company = $request->company;
             $slider->duration = $request->duration;
             $slider->owner = $owner;
-            $slider->imageUrl = '/storage/' . $sliderPath;
+            $slider->imageUrl = $web.'/storage/' . $sliderPath;
             $slider->status = 1;
 
             $data = [
