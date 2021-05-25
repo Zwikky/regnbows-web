@@ -40,7 +40,7 @@ class SliderController extends Controller
 
         $companies = Place::where('owner', '=', $user)->get();
 
-        return view('users-sliders', [
+        return view('users.sliders', [
             'sliders' => $sliders,
             'companies' => $companies
         ]);
