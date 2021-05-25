@@ -9,7 +9,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="{{route('userAddSlider')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('user-add-slider')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group row">
