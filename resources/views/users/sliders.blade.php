@@ -77,5 +77,5 @@
 
 @endsection
 @section('modals')
-@include('modals.admin.slider')
+@include('modals.users.user-slider')
 @endsection
